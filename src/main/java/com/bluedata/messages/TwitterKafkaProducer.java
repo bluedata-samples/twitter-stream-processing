@@ -27,15 +27,11 @@ public class TwitterKafkaProducer {
 
                 // Read configuration files
 		Properties in_config = new Properties();
-      		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-       		InputStream inputStream = loader.getResourceAsStream("config.properties");
+                InputStream inputStream = null;
        		try {
-         		 if (inputStream != null) {
+			 inputStream = new FileInputStream("config.properties");
                		 in_config.load(inputStream);
-          	 } else {
-                	throw new FileNotFoundException("property file config.properties not found in the classpath");
-           		}
-       		 } catch (IOException ex) {
+       		} catch (IOException ex) {
             	ex.printStackTrace();
         	}
 
